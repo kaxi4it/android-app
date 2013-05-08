@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res/cn.eoe.app"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5" >
+    android:background="#f5f5f5" 
+    android:id="@+id/main_rootLayout"
+    >
 
     <LinearLayout
         android:id="@+id/main_linear_listview"

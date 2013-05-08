@@ -40,6 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.eoe.app.R;
 import cn.eoe.app.adapter.BasePageAdapter;
+import cn.eoe.app.anim.TVOffAnimation;
 import cn.eoe.app.biz.BaseDao;
 import cn.eoe.app.biz.BlogsDao;
 import cn.eoe.app.biz.NewsDao;
@@ -92,6 +93,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	private PageIndicator mIndicator;
 	private LinearLayout loadLayout;
 	private LinearLayout loadFaillayout;
+	private FrameLayout rootLayout;
 
 	// init daos
 	private TopDao topDao;
@@ -172,6 +174,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 
 		imm = (InputMethodManager) getApplicationContext().getSystemService(
 				Context.INPUT_METHOD_SERVICE);
+		rootLayout = (FrameLayout) findViewById(R.id.main_rootLayout);
 		loadLayout = (LinearLayout) findViewById(R.id.view_loading);
 		loadFaillayout = (LinearLayout) findViewById(R.id.view_load_fail);
 		mAboveTitle = (TextView) findViewById(R.id.tv_above_title);
@@ -399,12 +402,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 					}, 3000);
 					break;
 				case 1:
-					mFrameTv.setVisibility(0);
-					mImgTv.setVisibility(0);
-					Animation anim = AnimationUtils.loadAnimation(
-							MainActivity.this, R.anim.tv_off);
-					anim.setAnimationListener(new tvOffAnimListener());
-					mImgTv.startAnimation(anim);
+					tvOffFinish();
 					break;
 				default:
 					break;
@@ -419,6 +417,27 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 			}
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	private void tvOffFinish() {
+		TVOffAnimation anim=new TVOffAnimation();
+		rootLayout.startAnimation(anim);
+		anim.setAnimationListener(new AnimationListener() {
+			
+			@Override
+			public void onAnimationStart(Animation animation) {
+			}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				finish();
+				overridePendingTransition(0, 0);
+			}
+		});
 	}
 
 	@Override
