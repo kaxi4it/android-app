@@ -48,6 +48,7 @@ src目录用于存放工程的包及java源码文件。
 >├ cn.eoe.app --存放程序全局性类的包<br>
 >├ cn.eoe.app.adapter --存放适配器的实现类的包 <br>
 >├ cn.eoe.app.adapter.base --存放适配器基类的包<br>
+>├ cn.eoe.app.anim --存放动画类的包<br>
 >├ cn.eoe.app.biz --存放ＤＡＯ类的包<br>
 >├ cn.eoe.app.config －－存放常量，配置和api接口等类的包<br>
 >├ cn.eoe.app.db --关于sqlite操作相关的类的包<br>
